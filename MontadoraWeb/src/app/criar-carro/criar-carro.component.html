@@ -1,0 +1,48 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active text-white" aria-current="page" href="#">Listar carro</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="mb-3 mt-4 text-center">
+        <div class="titulo">
+            <h3>Criar Carro</h3>
+        </div>
+        <form class="form"> 
+            <div class=" formulario mx-auto">
+                <label for="nomeCarro" class="form-label">Nome do Carro</label>
+                <input type="text" class="info form-control w-25 mx-auto" id="nomeCarro" name="nomeCarro" placeholder="Insira o nome do carro" [(ngModel)]="nomeCarro">
+    
+                <label for="anoFabricacao" class="form-label">Ano de Fabricação</label>
+                <input type="text" class="info form-control w-25 mx-auto" id="anoFabricacao" name="anoDeFabricacao" placeholder="Insira o ano de fabricação" [(ngModel)]="anoDeFabricacao">
+    
+                <label for="anoModeloCarro" class="form-label">Ano Modelo do Carro</label>
+                <input type="text" class="info form-control w-25 mx-auto" id="anoModeloCarro" name="anoModeloCarro" placeholder="Insira o ano do modelo do carro" [(ngModel)]="anoModeloCarro">
+    
+                <label for="ModeloCarro" class="form-label">Modelo do Carro</label>
+                <input type="text" class="info form-control w-25 mx-auto" id="ModeloCarro" name="modeloCarro" placeholder="Insira o modelo do carro" [(ngModel)]="modeloCarro">
+    
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="info form-control w-25 mx-auto" id="marca" name="marca" placeholder="Insira a marca do carro"[(ngModel)]="marca">
+    
+                <label for="cores" class="form-label">Cores</label>
+                <input type="text" class="info form-control w-25 mx-auto" id="cor" name="cor" placeholder="Insira o nome do carro" [(ngModel)]="cor">
+
+                <button type="button" class="botaoCor btn btn-primary mt-2" (click)="inserirCor()">Inserir cor</button>
+            </div>
+        </form>
+        <div class="listaCores">
+          <p>Lista de Cores Inseridas</p>
+          <p *ngFor="let cor of cores">{{ cor }}</p>
+        </div>
+        <div class="d-grid gap-2 col-2 mx-auto">
+            <button class="botao btn btn-primary" name="criarCarro" type="button" (click)="criarCarro()">Criar carro</button>
+        </div>
+    </div>    
+</div>

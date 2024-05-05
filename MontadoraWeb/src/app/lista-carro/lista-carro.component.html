@@ -1,0 +1,30 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="/cadastrar">Cadastrar carro</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <h3 class="text-center mt-4">Carros Cadastrados</h3>
+    <div class="row row-cols-4">
+      <div class="col-3" *ngFor="let carro of listaCarros">
+        <div class="card" style="width: 15rem;">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-body-secondary"> {{ carro.marca.nome }} </h6>
+            <h5 class="card-title">{{ carro.nomeCarro }}</h5>
+            <p class="card-text"> {{ carro.anoFabricacaoCarro }} </p>
+            <p class="card-text"> {{ carro.anoModeloCarro }} </p>
+            <p class="card-text"> {{ carro.modeloCarro }} </p>
+            <p class="card-text"> Cores: {{ formatarCores(carro.cores) }}</p>
+            <button type="button" class="botao btn btn-primary mt-2">Deletar</button>
+            <button type="button" class="botao btn btn-primary mt-2">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
