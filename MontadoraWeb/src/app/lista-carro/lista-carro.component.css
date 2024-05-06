@@ -12,3 +12,9 @@
 .text-white {
     color: #ffffff;
 }
+.card-body, .card-subtitle {
+    background-color: rgb(48, 48, 58);
+    color: #ffffff;
+    border: #4b056e 10px;
+}
+

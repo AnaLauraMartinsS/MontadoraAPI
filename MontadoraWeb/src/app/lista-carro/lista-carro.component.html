@@ -15,13 +15,13 @@
       <div class="col-3" *ngFor="let carro of listaCarros">
         <div class="card" style="width: 15rem;">
           <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-body-secondary"> {{ carro.marca.nome }} </h6>
+            <h6 class="card-subtitle mb-2"> {{ carro.marca.nome }} </h6>
             <h5 class="card-title">{{ carro.nomeCarro }}</h5>
             <p class="card-text"> {{ carro.anoFabricacaoCarro }} </p>
             <p class="card-text"> {{ carro.anoModeloCarro }} </p>
             <p class="card-text"> {{ carro.modeloCarro }} </p>
             <p class="card-text"> Cores: {{ formatarCores(carro.cores) }}</p>
-            <button type="button" class="botao btn btn-primary mt-2">Deletar</button>
+            <button type="button" class="botao btn btn-primary mt-2" *ngIf="carro.idCarro" (click)="deletarCarro(carro.idCarro)">Deletar</button>
             <button type="button" class="botao btn btn-primary mt-2">Editar</button>
           </div>
         </div>

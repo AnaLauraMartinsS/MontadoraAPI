@@ -8,7 +8,7 @@ export interface ICarro {
   cores: ICor[];
 }
 
-interface IMarca {
+export interface IMarca {
     nome: string;
 }
 

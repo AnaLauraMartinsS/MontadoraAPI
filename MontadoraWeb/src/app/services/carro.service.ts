@@ -1,13 +1,12 @@
+import { ICarro, ICor } from './../models/ICarro';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICarro, ICor } from '../models/ICarro';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CarroService {
-
   baseUrl: string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
@@ -24,10 +23,22 @@ export class CarroService {
     cores: string[],
     marca: string
   ): void {
+    if (
+      !nomeCarro ||
+      !anoFabricacaoCarro ||
+      !anoModeloCarro ||
+      !modeloCarro ||
+      !cores ||
+      !marca
+    ) {
+      console.error('Todos os campos tem que estar preenchidos');
+      return;
+    }
+
     const listaCores: ICor[] = [];
     for (let nomeCor of cores) {
       const novaCor: ICor = { nome: nomeCor };
-      listaCores.push(novaCor)
+      listaCores.push(novaCor);
     }
     const novoCarro: ICarro = {
       nomeCarro: nomeCarro,
@@ -37,9 +48,20 @@ export class CarroService {
       cores: listaCores,
       marca: { nome: marca },
     };
-    this.http.post(this.baseUrl + '/carro/cadastro', novoCarro).subscribe((response ) =>{
-      console.log(response);
-    })
+    this.http
+      .post(this.baseUrl + '/carro/cadastro', novoCarro)
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
-  
+
+  deletarCarro(id: number): Observable<string> {
+    return this.http.delete(`${this.baseUrl}/carro/${id}`, {
+      responseType: 'text',
+    });
+  }
+
+  mensagemCarroDeletado(): string {
+    return 'O carro foi deletado com sucesso!';
+  }
 }
