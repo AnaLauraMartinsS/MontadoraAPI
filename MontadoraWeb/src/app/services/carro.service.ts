@@ -61,7 +61,4 @@ export class CarroService {
     });
   }
 
-  mensagemCarroDeletado(): string {
-    return 'O carro foi deletado com sucesso!';
-  }
 }

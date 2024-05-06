@@ -14,9 +14,7 @@ export class ListaCarroComponent implements OnInit {
   constructor(private carroService: CarroService, private router: Router) {}
 
   ngOnInit(): void {
-    this.carroService.listarCarros().subscribe((response: ICarro[]) => {
-      this.listaCarros = response;
-    });
+    this.listarCarro();
   }
 
   redirecionar(rota: string) {
@@ -38,16 +36,17 @@ export class ListaCarroComponent implements OnInit {
     this.carroService.deletarCarro(id).subscribe(
       (response) => {
         console.log(response);
-        const index = this.listaCarros.findIndex(
-          (carro) => carro.idCarro === id
-        );
-        if (index !== -1) {
-          this.listaCarros.splice(index, 1);
-        }
+          this.listarCarro();
       },
       (error) => {
         console.error('Erro ao excluir carro:', error);
       }
     );
+  }
+
+  listarCarro(): void {
+    this.carroService.listarCarros().subscribe((response: ICarro[]) => {
+      this.listaCarros = response;
+    });
   }
 }
