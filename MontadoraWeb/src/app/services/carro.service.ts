@@ -1,4 +1,4 @@
-import { ICarro, ICor } from './../models/ICarro';
+import { ICarro, ICor, IMarca } from './../models/ICarro';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
@@ -59,6 +59,33 @@ export class CarroService {
     return this.http.delete(`${this.baseUrl}/carro/${id}`, {
       responseType: 'text',
     });
+  }
+
+  carroEditado(id: number, nomeCarro: string,
+    anoFabricacaoCarro: number,
+    anoModeloCarro: number,
+    modeloCarro: string,
+    cores: string[],
+    marca: string) {
+      const listaCores: ICor[] = [];
+    for (let nomeCor of cores) {
+      const novaCor: ICor = { nome: nomeCor };
+      listaCores.push(novaCor);
+    }
+
+    const novoCarro: ICarro = {
+      nomeCarro: nomeCarro,
+      anoFabricacaoCarro: anoFabricacaoCarro,
+      anoModeloCarro: anoModeloCarro,
+      modeloCarro: modeloCarro,
+      cores: listaCores,
+      marca: { nome: marca },
+    };
+    this.http
+      .put(this.baseUrl + '/carro/'+ id, novoCarro)
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 
 }

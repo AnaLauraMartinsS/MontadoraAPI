@@ -42,7 +42,7 @@ export class CriarCarroComponent implements OnInit {
   }
 
   inserirCor() {
-    if(this.cores.includes(this.cor))
+    if(this.cores.includes(this.cor.charAt(0).toUpperCase() + this.cor.slice(1)))
       return;
    this.cores.push(this.cor.charAt(0).toUpperCase() + this.cor.slice(1));
    this.cor = '';

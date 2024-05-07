@@ -1,7 +1,24 @@
 .botao {
     background-color: rgb(73, 4, 138);
-    border: rgb(73, 4, 138);
+    border: rgb(73, 4, 138) solid;
+    padding: 10px;
     margin: 5px;
+}
+.btn-custom:hover {
+  background-color: rgb(48, 48, 58);
+}
+.botaoCor {
+  background-color: rgb(73, 4, 138);
+  border: rgb(73, 4, 138) solid;
+  padding: 10px;
+  color: #ffffff;
+}
+.botaoCores {
+  background-color: rgba(73, 4, 138, 0);
+  border: rgb(150, 74, 221) solid;
+  border-radius: 5px;
+  margin: 5px;
+  color: #ffffff;
 }
 .navbar{
     background-color: rgb(73, 4, 138);
@@ -12,9 +29,14 @@
 .text-white {
     color: #ffffff;
 }
-.card-body, .card-subtitle {
+.card-body, .card-subtitle{
     background-color: rgb(48, 48, 58);
     color: #ffffff;
     border: #4b056e 10px;
 }
+.modal-body, .modal-header, .modal-footer {
+  background-color: rgb(48, 48, 58);
+  color: #ffffff;
+}
+
 

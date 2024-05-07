@@ -10,6 +10,14 @@ import { Router } from '@angular/router';
 })
 export class ListaCarroComponent implements OnInit {
   listaCarros!: ICarro[];
+  idCarro?: number;
+  nomeCarro!: string;
+  anoFabricacaoCarro!: number;
+  anoModeloCarro!: number;
+  modeloCarro!: string;
+  marca!: string;
+  cores!: string[];
+  cor!: string;
 
   constructor(private carroService: CarroService, private router: Router) {}
 
@@ -36,7 +44,7 @@ export class ListaCarroComponent implements OnInit {
     this.carroService.deletarCarro(id).subscribe(
       (response) => {
         console.log(response);
-          this.listarCarro();
+        this.listarCarro();
       },
       (error) => {
         console.error('Erro ao excluir carro:', error);
@@ -47,6 +55,62 @@ export class ListaCarroComponent implements OnInit {
   listarCarro(): void {
     this.carroService.listarCarros().subscribe((response: ICarro[]) => {
       this.listaCarros = response;
-    });
+    }, (error) => console.error(error), () => console.log("Listado com sucesso"));
+  }
+
+  abrirModal(): void {
+    const modalDiv = document.getElementById('modalCarro');
+    if (modalDiv != null) {
+      modalDiv.style.display = 'block';
+    }
+  }
+
+  fecharModal(): void {
+    const modalDiv = document.getElementById('modalCarro');
+    if (modalDiv != null) {
+      modalDiv.style.display = 'none';
+    }
+  }
+
+  iniciarEdicao(carro: ICarro): void {
+    this.idCarro = carro.idCarro;
+    this.nomeCarro = carro.nomeCarro;
+    this.anoFabricacaoCarro = carro.anoFabricacaoCarro;
+    this.anoModeloCarro = carro.anoModeloCarro;
+    this.marca = carro.marca.nome;
+    this.cores = carro.cores.map((cor) => cor.nome);
+    this.modeloCarro = carro.modeloCarro;
+    this.abrirModal();
+  }
+
+  excluirCor(index: number) {
+    this.cores.splice(index, 1);
+  }
+
+  adicionarCor() {
+    if (
+      this.cores.includes(this.cor.charAt(0).toUpperCase() + this.cor.slice(1))
+    )
+      return;
+    this.cores.push(this.cor.charAt(0).toUpperCase() + this.cor.slice(1));
+    this.cor = '';
+  }
+
+  carroEditado() {
+    if(this.idCarro != undefined)
+    this.carroService.carroEditado(
+      this.idCarro,
+      this.nomeCarro,
+      this.anoFabricacaoCarro,
+      this.anoModeloCarro,
+      this.modeloCarro,
+      this.cores,
+      this.marca
+    );
+    this.fecharModal()
+    setTimeout(()=> {
+      this.listaCarros = [];
+      this.listarCarro();
+    }, 1000);
   }
 }

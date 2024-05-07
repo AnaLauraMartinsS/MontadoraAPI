@@ -7,15 +7,19 @@
     color: #000000 !important;
 }
 .botao {
-    background-color: rgb(73, 4, 138);
-    border: rgb(73, 4, 138);
-    padding-left: 20px;
-    margin: 15px;
+  background-color: rgb(73, 4, 138);
+  border: rgb(73, 4, 138) solid;
+  padding: 10px;
+  margin: 5px;
 }
 .botaoCor {
-    background-color: rgb(73, 4, 138);
-    border: rgb(73, 4, 138);
-    margin: 5px;
+  background-color: rgb(73, 4, 138);
+  border: rgb(73, 4, 138) solid;
+  padding: 10px;
+  color: #ffffff;
+}
+.btn-custom:hover {
+background-color: rgb(48, 48, 58);
 }
 .navbar{
     background-color: rgb(73, 4, 138);
